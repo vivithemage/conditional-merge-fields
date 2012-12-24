@@ -9,10 +9,16 @@
 
   {IFFIELD[quotes_total][>1000000000000] Wowsers, this is a big quote!! } 
   */
-  $html = "sdfjalsdjf sdfjlksd fsdj {IFFIELD[accountshipads_street][notempty] Street: \$accountshipads_street} jsdfkjaksldfjlsdfjl dsjf jlsfds \n";
+
+  /* Questions
+    How the hell do you replace stuff, as in remove the iffield and replace with a var for example */
+ 
+
+  //$html = "sdfjalsdjf sdfjlksd fsdj {IFFIELD[accountshipads_street][notempty] Street: \$accountshipads_street} jsdfkjaksldfjlsdfjl dsjf jlsfds \n";
+  $html = "{IFFIELD[accountshipads_street]";
   echo $html;
   
-  $pattern = "/{IFFIELD\[/";
+  $pattern = "/\{IFFIELD\[[a-zA-Z-_]*\]/";
   echo $pattern;
   
   if (preg_match($pattern,$html)) {
