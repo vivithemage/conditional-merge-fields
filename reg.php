@@ -15,14 +15,16 @@
  
 
   //$html = "sdfjalsdjf sdfjlksd fsdj {IFFIELD[accountshipads_street][notempty] Street: \$accountshipads_street} jsdfkjaksldfjlsdfjl dsjf jlsfds \n";
-  $html = "{IFFIELD[accountshipads_street]";
+  $html = "sdfds {IFFIELD[accountshipads_street][notempty]ndf}";
   echo $html;
   
-  $pattern = "/\{IFFIELD\[[a-zA-Z-_]*\]/";
+  //$pattern = "/\{IFFIELD\[[a-zA-Z-_]*\]\[[a-zA-Z-]*\][a-zA-Z]*\}/"; // yay matches
+  $pattern = "/\{IFFIELD\[[\w]*\]\[[\w]*\][\w]*\}/";
   echo $pattern;
   
-  if (preg_match($pattern,$html)) {
+  if (preg_match($pattern,$html,$matches)) {
     echo "\nMatch\n";
+    print_r($matches);
   }
   else  {
     echo "\nNot match\n";
