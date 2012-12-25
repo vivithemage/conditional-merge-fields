@@ -11,22 +11,39 @@
   */
 
   /* Questions
-    How the hell do you replace stuff, as in remove the iffield and replace with a var for example */
- 
+    How the hell do you replace stuff, as in remove the iffield and replace with a var for example - looks like preg_replace may do the trick
 
-  //$html = "sdfjalsdjf sdfjlksd fsdj {IFFIELD[accountshipads_street][notempty] Street: \$accountshipads_street} jsdfkjaksldfjlsdfjl dsjf jlsfds \n";
+  How do you allow for any characters other than say one, e.g. all characters except } */
+
+  // Parse the pdftemplate and do any needed processing, then replace
+  function pdftemplate_functions($html,$matches) {
+    $iffield_pattern = "/^\{IFFIELD/";
+    $ifcount_pattern = "/^\{IFCOUNT/";
+    
+    if (preg_match($iffield_pattern, $matches, $match_within)) {
+      echo "\ninside match\n";
+    } 
+    return $html;   
+  }
+
   $html = "sdfds {IFFIELD[accountshipads_street][notempty]ndf}";
-  echo $html;
+  $html .= "sdfds {IFCONTAINS[accountshipads_street][pudding street]ndf}";
+  $html .= "sdxwsdwefds {IFFIELD[first_name][>100000]Bigzz}";
+  echo 'before: '.$html;
   
-  //$pattern = "/\{IFFIELD\[[a-zA-Z-_]*\]\[[a-zA-Z-]*\][a-zA-Z]*\}/"; // yay matches
-  $pattern = "/\{IFFIELD\[[\w]*\]\[[\w]*\][\w]*\}/";
+  $pattern = "/\{[A-Z]*\[[\w]*\]\[[\w]*\][\w]*\}/";
   echo $pattern;
   
   if (preg_match($pattern,$html,$matches)) {
     echo "\nMatch\n";
-    print_r($matches);
+    //print_r($matches);
+    $found_match = $matches[0];
+    echo $found_match.'\n';
+    $html_complete = pdftemplate_functions($html,$found_match); 
   }
   else  {
-    echo "\nNot match\n";
+    echo "\nNo match\n";
   }
+  
+  echo 'end result: '.$html_complete;
 ?>
