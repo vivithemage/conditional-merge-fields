@@ -19,10 +19,16 @@
   function pdftemplate_functions($html,$matches) {
     $iffield_pattern = "/^\{IFFIELD/";
     $ifcount_pattern = "/^\{IFCOUNT/";
-    
+   
+    // For the IFFIELD function 
     if (preg_match($iffield_pattern, $matches, $match_within)) {
-      echo "\ninside match\n";
+      echo "\ninside match IFFIELD \n";
     } 
+    
+    // For the IFCOUNT function 
+    if (preg_match($iffield_pattern, $matches, $match_within)) {
+      echo "\ninside match IFCOUNT\n";
+    }
     return $html;   
   }
 
