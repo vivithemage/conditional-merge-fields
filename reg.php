@@ -25,8 +25,13 @@
     if (preg_match($iffield_pattern, $matches, $match_within)) {
       echo "Matched IFFIELD, processing... \n";
       // pick out the variables in the pdf function
-      $pattern = "/\{[IFFIELD]*\[(?P<function_variables>[\w]*)\]\[[\w]*\][\w]*\}/";
-      //preg_match();
+      $pattern = "/\{[IFFIELD]*\[(?P<function_variables>[\w]*)\]\[(?P<specifics>[\w]*)\][\w]*\}/";
+      preg_match($pattern,$matches, $components_array);
+      print_r($components_array);
+
+      // Replacing function with function results
+      $replacement = "OOf";
+      $html = str_replace($matches, $replacement, $html);
     } 
     
     // For the IFCOUNT function 
@@ -36,7 +41,7 @@
     return $html;   
   }
 
-  $html = "sdfds {IFFIELD[accountshipads_street][notempty]ndf}";
+  $html = "sdfds {IFFIELD[accountshipads_street][notempty]ndf} endingszwoes ";
   $html .= "sdfds {IFCONTAINS[accountshipads_street][pudding street]ndf}";
   $html .= "sdxwsdwefds {IFFIELD[first_name][>100000]Bigzz}\n";
   echo "Before: ".$html;
