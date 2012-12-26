@@ -25,9 +25,12 @@
     if (preg_match($iffield_pattern, $matches, $match_within)) {
       echo "Matched IFFIELD, processing... \n";
       // pick out the variables in the pdf function
-      $pattern = "/\{[IFFIELD]*\[(?P<function_variables>[\w]*)\]\[(?P<specifics>[\w]*)\][\w]*\}/";
+      $pattern = "/\{[IFFIELD]*\[(?P<function_variables>[\w]*)\]\[(?P<specifics>[\w]*)\](?P<content>[\w]*)\}/";
       preg_match($pattern,$matches, $components_array);
       print_r($components_array);
+      if ($components_array == "notempty")  {
+      }
+
 
       // Replacing function with function results
       $replacement = "OOf";
@@ -47,7 +50,7 @@
   echo "Before: ".$html;
   
   $pattern = "/\{[A-Z]*\[[\w]*\]\[[\w]*\][\w]*\}/";
-  echo "Pattern: ".$pattern;
+  echo "Regex pattern: ".$pattern;
   
   if (preg_match($pattern,$html,$matches)) {
     echo "\nMatch\n";
