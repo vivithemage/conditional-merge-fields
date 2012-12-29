@@ -18,18 +18,31 @@
 
   // Parse the pdftemplate and do any needed processing, then replace
   function pdftemplate_functions($html,$matches) {
-    $iffield_pattern = "/^\{IFFIELD/";
-    $ifcount_pattern = "/^\{IFCOUNT/";
-   
+    $root_pdftemplate_funct = array (
+    'iffield_pattern' => "/^\{IFFIELD/",
+    'ifcount_pattern' => "/^\{IFCOUNT/",
+    'ifcontains_pattern' => "/^\{IFCONTAINS/",
+    );
+    
+    // TODO: Put in loop here to allow for multiple function specifics, variables splitting in this loop.
+    
     // For the IFFIELD function 
-    if (preg_match($iffield_pattern, $matches, $match_within)) {
-      echo "Matched IFFIELD, processing... \n";
+    if (preg_match($root_pdftemplate_funct['iffield_pattern'], $matches, $match_within)) {
+      
       // pick out the variables in the pdf function
+      echo "Matched IFFIELD, processing... \n";
       $pattern = "/\{[IFFIELD]*\[(?P<function_variables>[\w]*)\]\[(?P<specifics>[\w]*)\](?P<content>[\w]*)\}/";
       preg_match($pattern,$matches, $components_array);
       print_r($components_array);
-      if ($components_array == "notempty")  {
+     
+      // Check variables are not empty 
+      if ($components_array['specifics'] == "notempty")  {
+        echo "In notempty\n";
+        // Split function variables here. & seems like a good delimeter, explode it and then loop through checking if any of these values are empty
+        // sql for checking 
       }
+
+      // if the start character of $components_array['specifics'] is an operator, <, >
 
 
       // Replacing function with function results
@@ -38,9 +51,10 @@
     } 
     
     // For the IFCOUNT function 
-    if (preg_match($ifcount_pattern, $matches, $match_within)) {
+    if (preg_match($root_pdftemplate_funct['ifcount_pattern'], $matches, $match_within)) {
       echo "Matched IFCOUNT, processing... \n";
     }
+    
     return $html;   
   }
 

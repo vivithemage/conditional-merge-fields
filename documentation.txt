@@ -1,0 +1,13 @@
+PDF Template Functions
+----------------------
+
+  - What are PDF Template Functions?
+
+PDF Template Functions can be seen as the next step up from pdf merge variables in that they allow you to specify conditions in which content is presented in the pdf.
+One way to explain this is to provide an example of a real life scenario and then how issues in the scenario can be overcome using pdf template functions.
+
+Sarah is writing an invitation to a pdf template for a 
+
+something for a count
+If a field is empty
+

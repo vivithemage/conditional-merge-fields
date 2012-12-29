@@ -1,0 +1,6 @@
+PDF Template Functions - Technical Documentation
+------------------------------------------------
+
+ - Adding to PDF Template Functions
+
+The pdf Template functions have been written in such a way that adding additional functions and adding processing. Here is a little tutorial on how to add one. 
