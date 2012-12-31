@@ -4,10 +4,9 @@ PDF Template Functions
   - What are PDF Template Functions?
 
 PDF Template Functions can be seen as the next step up from pdf merge variables in that they allow you to specify conditions in which content is presented in the pdf.
-One way to explain this is to provide an example of a real life scenario and then how issues in the scenario can be overcome using pdf template functions.
 
-Sarah is writing an invitation to a pdf template for a 
+For intance, if you only wanted to present a lable if a variable contained data you would do something like this:
 
-something for a count
-If a field is empty
+  {IFFIELD[$contact_firstname][ifempty] Dear $contact_firstname}
 
+This function will only display "Dear " followed by the contact's first name if the field actually contains a value. If there is no value in the field, nothing will be shown.
