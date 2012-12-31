@@ -10,3 +10,6 @@ For intance, if you only wanted to present a lable if a variable contained data 
   {IFFIELD[$contact_firstname][ifempty] Dear $contact_firstname}
 
 This function will only display "Dear " followed by the contact's first name if the field actually contains a value. If there is no value in the field, nothing will be shown.
+
+Limitations: Due to the nature of the curly braces ({ and }), these can not be included in the content section of the pdf template function as it would confuse the parser. So
+  {IFFIELD[$contact_firstname][ifempty] using {  in the content section}
